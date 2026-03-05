@@ -3,14 +3,24 @@
 import Link from "next/link"
 import { useRouter } from "next/navigation"
 import { useCart } from "@/context/CartContext"
+import { useState } from "react"
 
 export default function ProductCard({ product }: any) {
   const router = useRouter()
   const { addToCart } = useCart()
 
+  const [added, setAdded] = useState(false)
+
   const handleAddToCart = (e: React.MouseEvent) => {
     e.stopPropagation() // prevent redirect
+
     addToCart(product)
+
+    setAdded(true)
+
+    setTimeout(() => {
+      setAdded(false)
+    }, 1200)
   }
 
   return (
@@ -43,11 +53,14 @@ export default function ProductCard({ product }: any) {
         {/* ADD TO CART BUTTON */}
         <button
           onClick={handleAddToCart}
-          className="w-full bg-black text-white 
-                     py-2 rounded-lg 
-                     hover:bg-gray-800 transition"
+          className={`
+            w-full py-2 rounded-lg text-white
+            transition duration-200
+            active:scale-95
+            ${added ? "bg-green-600" : "bg-black hover:bg-gray-800"}
+          `}
         >
-          Add to Cart
+          {added ? "Added ✓" : "Add to Cart"}
         </button>
       </div>
     </div>

@@ -18,21 +18,21 @@ export default function Navbar() {
       <div className="max-w-6xl mx-auto px-4 py-4 flex justify-between items-center">
 
         {/* LOGO */}
-        <Link href="/" className="text-2xl font-bold">
+        <Link href="/" className="text-2xl font-bold black">
           PholvaHubs
         </Link>
 
         {/* DESKTOP MENU */}
         <div className="hidden md:flex items-center gap-8">
-          <Link href="/" className="hover:text-gray-600">
+          <Link href="/" className="hover:text-gray-600 black">
             Home
           </Link>
 
-          <Link href="/products" className="hover:text-gray-600">
+          <Link href="/products" className="hover:text-gray-600 black">
             Products
           </Link>
 
-          <Link href="/cart" className="relative hover:text-gray-600">
+          <Link href="/cart" className="relative hover:text-gray-600 black">
             Cart
             {totalQuantity > 0 && (
               <span className="absolute -top-2 -right-4 bg-black text-white text-xs px-2 py-0.5 rounded-full">
