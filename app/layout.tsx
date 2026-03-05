@@ -1,6 +1,7 @@
 import "./globals.css";
 import Footer from "@/components/Footer";
 import Navbar from "@/components/Navbar";
+import FloatingCart from "@/components/FloatingCart"
 import { CartProvider } from "@/context/CartContext";
 
 export default function RootLayout({
@@ -22,6 +23,7 @@ export default function RootLayout({
 
           {/* GLOBAL FOOTER */}
           <Footer />
+          <FloatingCart />   {/* ADD THIS */}
         </CartProvider>
       </body>
     </html>

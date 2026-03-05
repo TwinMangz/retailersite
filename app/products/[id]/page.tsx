@@ -4,18 +4,17 @@ export const dynamic = "force-dynamic";
 import { useParams } from "next/navigation";
 import { useState } from "react";
 import { allProducts } from "@/data/products";
-import { useRouter } from "next/navigation";
 import Link from "next/link";
 import { useCart } from "@/context/CartContext";
 
 export default function ProductDetails() {
   const { id } = useParams();
-  const router = useRouter();
   const { addToCart } = useCart();
 
   const product = allProducts.find((item) => item.id === Number(id));
 
   const [currentImage, setCurrentImage] = useState(0);
+  const [added, setAdded] = useState(false); // ⭐ new state
 
   if (!product) {
     return <div className="text-center py-20">Product not found</div>;
@@ -31,6 +30,16 @@ export default function ProductDetails() {
     setCurrentImage((prev) =>
       prev === 0 ? product.images.length - 1 : prev - 1,
     );
+  };
+
+  const handleAddToCart = () => {
+    addToCart(product);
+
+    setAdded(true);
+
+    setTimeout(() => {
+      setAdded(false);
+    }, 1200);
   };
 
   return (
@@ -90,14 +99,22 @@ export default function ProductDetails() {
         {/* PRODUCT INFO */}
         <div className="space-y-4">
           <h1 className="text-3xl font-bold">{product.name}</h1>
+
           <p className="text-xl text-gray-700">৳ {product.price}</p>
+
           <p className="text-gray-600">{product.description}</p>
 
+          {/* ADD TO CART BUTTON */}
           <button
-            onClick={() => addToCart(product)}
-            className="bg-black text-white px-6 py-3 rounded-lg"
+            onClick={handleAddToCart}
+            className={`
+              px-6 py-3 rounded-lg text-white
+              transition duration-200
+              active:scale-95
+              ${added ? "bg-green-600" : "bg-black hover:bg-gray-800"}
+            `}
           >
-            Add to Cart
+            {added ? "Added ✓" : "Add to Cart"}
           </button>
         </div>
       </div>
