@@ -1,34 +1,31 @@
-"use client";
-export const dynamic = "force-dynamic";
+"use client"
 
-import { useSearchParams } from "next/navigation";
-import { useState, useEffect } from "react";
-import ProductCard from "@/components/ProductCard";
-import { allProducts } from "@/data/products";
-import { useRouter } from "next/navigation";
+import { useState } from "react"
+import ProductCard from "@/components/ProductCard"
+import { allProducts } from "@/data/products"
+import { useRouter } from "next/navigation"
 
-export default function Products() {
-  const searchParams = useSearchParams();
-  const router = useRouter();
+export default function Products({ searchParams }: { searchParams: { search?: string } }) {
+  
+  const router = useRouter()
 
-  const query = searchParams.get("search") || "";
-  const [search, setSearch] = useState(query);
-
-  useEffect(() => {
-    setSearch(query);
-  }, [query]);
+  const query = searchParams?.search || ""
+  const [search, setSearch] = useState(query)
 
   const filteredProducts = allProducts.filter((product) =>
-    product.name.toLowerCase().includes(search.toLowerCase()),
-  );
+    product.name.toLowerCase().includes(query.toLowerCase())
+  )
 
   const handleSearch = () => {
-    router.push(`/products?search=${search}`);
-  };
+    router.push(`/products?search=${search}`)
+  }
 
   return (
     <div className="max-w-7xl mx-auto px-4 space-y-10">
-      <h1 className="text-3xl font-bold text-center">All Products</h1>
+
+      <h1 className="text-3xl font-bold text-center">
+        All Products
+      </h1>
 
       {/* SEARCH BAR */}
       <div className="max-w-xl mx-auto flex gap-2">
@@ -49,7 +46,9 @@ export default function Products() {
 
       {/* PRODUCT GRID */}
       {filteredProducts.length === 0 ? (
-        <p className="text-center text-gray-500">No products found.</p>
+        <p className="text-center text-gray-500">
+          No products found.
+        </p>
       ) : (
         <div
           className="
@@ -62,6 +61,7 @@ export default function Products() {
           ))}
         </div>
       )}
+
     </div>
-  );
+  )
 }
