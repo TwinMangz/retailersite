@@ -19,7 +19,7 @@ export default function Navbar() {
 
         {/* LOGO */}
         <Link href="/" className="text-2xl font-bold">
-          UrbanWear
+          PholvaHubs
         </Link>
 
         {/* DESKTOP MENU */}

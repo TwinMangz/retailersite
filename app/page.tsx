@@ -27,7 +27,7 @@ export default function Home() {
       {/* HERO */}
       <section className="text-center py-16">
         <h1 className="text-4xl sm:text-5xl font-extrabold mb-6">
-          Welcome to UrbanWear
+          Welcome to PholvaHubs
         </h1>
 
         {/* SEARCH */}
