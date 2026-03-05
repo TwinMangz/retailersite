@@ -1,11 +1,12 @@
 "use client";
+export const dynamic = "force-dynamic";
 
 import { useParams } from "next/navigation";
 import { useState } from "react";
 import { allProducts } from "@/data/products";
 import { useRouter } from "next/navigation";
 import Link from "next/link";
-import { useCart } from "@/context/CartContext"
+import { useCart } from "@/context/CartContext";
 
 export default function ProductDetails() {
   const { id } = useParams();
@@ -94,7 +95,8 @@ export default function ProductDetails() {
 
           <button
             onClick={() => addToCart(product)}
-          className="bg-black text-white px-6 py-3 rounded-lg">
+            className="bg-black text-white px-6 py-3 rounded-lg"
+          >
             Add to Cart
           </button>
         </div>
